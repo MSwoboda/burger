@@ -1,5 +1,6 @@
-INSERT INTO burgers (name) VALUES ('Meeses');
-INSERT INTO burgers (name) VALUES ('Bongo Cat');
-INSERT INTO burgers (name) VALUES ('Avocado Toast',TRUE);
-INSERT INTO burgers (name) VALUES ('McWhopper');
-INSERT INTO burgers (name) VALUES ('Turkey');
+INSERT INTO burgers (burger_name) VALUES ('Meeses');
+INSERT INTO burgers (burger_name) VALUES ('Bongo Cat');
+INSERT INTO burgers (burger_name,devoured) VALUES ('Avocado Toast',TRUE);
+INSERT INTO burgers (burger_name,devoured) VALUES ('McWhopper',TRUE);
+INSERT INTO burgers (burger_name) VALUES ('Turkey');
+
