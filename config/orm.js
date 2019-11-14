@@ -70,6 +70,20 @@ var orm = {
         console.log(queryString);
         connection.query(queryString, function(err, result) {
             if (err) {
+                console.log("failed");
+
+                throw err;
+            }
+
+            cb(result);
+        });
+    },
+    dropAll: function(table) {
+        var queryString = "DROP " + table + " IF EXISTS";
+
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+            if (err) {
                 throw err;
             }
 

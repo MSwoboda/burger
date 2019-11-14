@@ -1,51 +1,107 @@
-<h1>Burgers!</h1>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Burger Docs</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+  
 
-<h2>Burgers which have not been devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{burger_name}}
-
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers which have been devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-  {{burger_name}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="burger">Burger Name:</label>
-    <input type="text" id="burger" name="name">
+    </div>
+  </header>
+ <div class="mdl-layout__drawer">
+    <span class="mdl-layout__title">Burger Control Center</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#">Delete All</a>
+      <a class="mdl-navigation__link" href="#">Reset Samples</a>
+      {{!-- <a class="mdl-navigation__link" href="#">How</a> --}}
+  
+    </nav>
   </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
 
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Radio
-  </label>
+
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col  mdl-cell--12-col-tablet">
+
+          <div class="mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Add Burger</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-group">
+                <label class="mdl-textfield__label" for="burger">Burger Name...</label>
+                <input class="mdl-textfield__input" type="text" id="burger">
+              </div>
+              <div class="form-group"></div>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="devoured-1">
+                <input type="radio" id="devoured-1" class="mdl-radio__button" name="devoured" value="1" checked>
+                <span class="mdl-radio__label">Devoured</span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="devoured-2">
+                <input type="radio" id="devoured-2" class="mdl-radio__button" name="devoured" value="0">
+                <span class="mdl-radio__label">Not Devoured</span>
+              </label>
+              <br>
+            </div>
+            <!-- Colored FAB button -->
+            <button type="submit" id="addBurger"
+              class=" mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-button--colored">
+              <i class="material-icons">add</i>
+            </button>
+            <br>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col  mdl-cell--6-col-tablet">
+
+
+          <div class="mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Not Devoured!</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <ul style="list-style-type:none">
+                {{#each burgers}}
+                {{#unless devoured}}
+                {{> burgers/burger-block devoured=true}}
+                {{!-- {{burger_name}} --}}
+                {{/unless}}
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="mdl-cell mdl-cell--3-col  mdl-cell--6-col-tablet">
+          <div class="mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">
+                Devoured!</h2>
+
+            </div>
+
+            <div class="mdl-card__supporting-text">
+              <ul style="list-style-type:none">
+                {{#each burgers}}
+                {{#if devoured}}
+                {{> burgers/burger-block devoured=false}}
+                {{!-- {{burger_name}} --}}
+                {{/if}}
+                {{/each}}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
 </div>
-
-  <div class="form-group">
-    <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured<br>
-    <input type="radio" name="devoured" value="0"> Not Devoured
-  </div>
-
-  <button type="submit">Add Burger</button>
-</form>
+</main>
+</div>
