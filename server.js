@@ -1,10 +1,18 @@
 var express = require("express");
+var timeout = require('connect-timeout');
 
 var PORT = process.env.PORT || 3000;
 
 var app = express();
 
 app.use(express.static("public"));
+
+app.use(timeout(15000));
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next) {
+    if (!req.timedout) next();
+}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
